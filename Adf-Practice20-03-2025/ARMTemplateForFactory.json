@@ -1,0 +1,979 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "Adf-Practice20-03-2025"
+		},
+		"Snowflake1_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'Snowflake1'"
+		},
+		"AzureBlobStorage1_sasUri": {
+			"type": "secureString",
+			"metadata": "Secure string for 'sasUri' of 'AzureBlobStorage1'"
+		},
+		"Snowflake1_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "city"
+		},
+		"Snowflake1_properties_typeProperties_role": {
+			"type": "string",
+			"defaultValue": "ACCOUNTADMIN"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline1')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Copy data1",
+						"type": "Copy",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"source": {
+								"type": "DelimitedTextSource",
+								"storeSettings": {
+									"type": "AzureBlobStorageReadSettings",
+									"recursive": true,
+									"wildcardFolderPath": "listings",
+									"wildcardFileName": "lisbon listings.csv",
+									"enablePartitionDiscovery": false
+								},
+								"formatSettings": {
+									"type": "DelimitedTextReadSettings"
+								}
+							},
+							"sink": {
+								"type": "SnowflakeV2Sink",
+								"importSettings": {
+									"type": "SnowflakeImportCopyCommand"
+								}
+							},
+							"enableStaging": false,
+							"translator": {
+								"type": "TabularTranslator",
+								"mappings": [
+									{
+										"source": {
+											"name": "id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ID",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "listing_url",
+											"type": "String"
+										},
+										"sink": {
+											"name": "LISTING_URL",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "scrape_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "SCRAPE_ID",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "last_scraped",
+											"type": "String"
+										},
+										"sink": {
+											"name": "LAST_SCRAPED",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "source",
+											"type": "String"
+										},
+										"sink": {
+											"name": "SOURCE",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "name",
+											"type": "String"
+										},
+										"sink": {
+											"name": "NAME",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "description",
+											"type": "String"
+										},
+										"sink": {
+											"name": "DESCRIPTION",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "neighborhood_overview",
+											"type": "String"
+										},
+										"sink": {
+											"name": "NEIGHBORHOOD_OVERVIEW",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "picture_url",
+											"type": "String"
+										},
+										"sink": {
+											"name": "PICTURE_URL",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "host_id",
+											"type": "String"
+										},
+										"sink": {
+											"name": "HOST_ID",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "host_url",
+											"type": "String"
+										},
+										"sink": {
+											"name": "HOST_URL",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "host_name",
+											"type": "String"
+										},
+										"sink": {
+											"name": "HOST_NAME",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "host_since",
+											"type": "String"
+										},
+										"sink": {
+											"name": "HOST_SINCE",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "host_location",
+											"type": "String"
+										},
+										"sink": {
+											"name": "HOST_LOCATION",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "host_about",
+											"type": "String"
+										},
+										"sink": {
+											"name": "HOST_ABOUT",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "host_response_time",
+											"type": "String"
+										},
+										"sink": {
+											"name": "HOST_RESPONSE_TIME",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "host_response_rate",
+											"type": "String"
+										},
+										"sink": {
+											"name": "HOST_RESPONSE_RATE",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "host_acceptance_rate",
+											"type": "String"
+										},
+										"sink": {
+											"name": "HOST_ACCEPTANCE_RATE",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "host_is_superhost",
+											"type": "String"
+										},
+										"sink": {
+											"name": "HOST_IS_SUPERHOST",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "host_thumbnail_url",
+											"type": "String"
+										},
+										"sink": {
+											"name": "HOST_THUMBNAIL_URL",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "host_picture_url",
+											"type": "String"
+										},
+										"sink": {
+											"name": "HOST_PICTURE_URL",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "host_neighbourhood",
+											"type": "String"
+										},
+										"sink": {
+											"name": "HOST_NEIGHBOURHOOD",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "host_listings_count",
+											"type": "String"
+										},
+										"sink": {
+											"name": "HOST_LISTINGS_COUNT",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "host_total_listings_count",
+											"type": "String"
+										},
+										"sink": {
+											"name": "HOST_TOTAL_LISTINGS_COUNT",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "host_verifications",
+											"type": "String"
+										},
+										"sink": {
+											"name": "HOST_VERIFICATIONS",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "host_has_profile_pic",
+											"type": "String"
+										},
+										"sink": {
+											"name": "HOST_HAS_PROFILE_PIC",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "host_identity_verified",
+											"type": "String"
+										},
+										"sink": {
+											"name": "HOST_IDENTITY_VERIFIED",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "neighbourhood",
+											"type": "String"
+										},
+										"sink": {
+											"name": "NEIGHBOURHOOD",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "neighbourhood_cleansed",
+											"type": "String"
+										},
+										"sink": {
+											"name": "NEIGHBOURHOOD_CLEANSED",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "neighbourhood_group_cleansed",
+											"type": "String"
+										},
+										"sink": {
+											"name": "NEIGHBOURHOOD_GROUP_CLEANSED",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "latitude",
+											"type": "String"
+										},
+										"sink": {
+											"name": "LATITUDE",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "longitude",
+											"type": "String"
+										},
+										"sink": {
+											"name": "LONGITUDE",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "property_type",
+											"type": "String"
+										},
+										"sink": {
+											"name": "PROPERTY_TYPE",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "room_type",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ROOM_TYPE",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "accommodates",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ACCOMMODATES",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "bathrooms",
+											"type": "String"
+										},
+										"sink": {
+											"name": "BATHROOMS",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "bathrooms_text",
+											"type": "String"
+										},
+										"sink": {
+											"name": "BATHROOMS_TEXT",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "bedrooms",
+											"type": "String"
+										},
+										"sink": {
+											"name": "BEDROOMS",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "beds",
+											"type": "String"
+										},
+										"sink": {
+											"name": "BEDS",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "amenities",
+											"type": "String"
+										},
+										"sink": {
+											"name": "AMENITIES",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "price",
+											"type": "String"
+										},
+										"sink": {
+											"name": "PRICE",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "minimum_nights",
+											"type": "String"
+										},
+										"sink": {
+											"name": "MINIMUM_NIGHTS",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "maximum_nights",
+											"type": "String"
+										},
+										"sink": {
+											"name": "MAXIMUM_NIGHTS",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "minimum_minimum_nights",
+											"type": "String"
+										},
+										"sink": {
+											"name": "MINIMUM_MINIMUM_NIGHTS",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "maximum_minimum_nights",
+											"type": "String"
+										},
+										"sink": {
+											"name": "MAXIMUM_MINIMUM_NIGHTS",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "minimum_maximum_nights",
+											"type": "String"
+										},
+										"sink": {
+											"name": "MINIMUM_MAXIMUM_NIGHTS",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "maximum_maximum_nights",
+											"type": "String"
+										},
+										"sink": {
+											"name": "MAXIMUM_MAXIMUM_NIGHTS",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "minimum_nights_avg_ntm",
+											"type": "String"
+										},
+										"sink": {
+											"name": "MINIMUM_NIGHTS_AVG_NTM",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "maximum_nights_avg_ntm",
+											"type": "String"
+										},
+										"sink": {
+											"name": "MAXIMUM_NIGHTS_AVG_NTM",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "calendar_updated",
+											"type": "String"
+										},
+										"sink": {
+											"name": "CALENDAR_UPDATED",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "has_availability",
+											"type": "String"
+										},
+										"sink": {
+											"name": "HAS_AVAILABILITY",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "availability_30",
+											"type": "String"
+										},
+										"sink": {
+											"name": "AVAILABILITY_30",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "availability_60",
+											"type": "String"
+										},
+										"sink": {
+											"name": "AVAILABILITY_60",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "availability_90",
+											"type": "String"
+										},
+										"sink": {
+											"name": "AVAILABILITY_90",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "availability_365",
+											"type": "String"
+										},
+										"sink": {
+											"name": "AVAILABILITY_365",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "calendar_last_scraped",
+											"type": "String"
+										},
+										"sink": {
+											"name": "CALENDAR_LAST_SCRAPED",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "number_of_reviews",
+											"type": "String"
+										},
+										"sink": {
+											"name": "NUMBER_OF_REVIEWS",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "number_of_reviews_ltm",
+											"type": "String"
+										},
+										"sink": {
+											"name": "NUMBER_OF_REVIEWS_LTM",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "number_of_reviews_l30d",
+											"type": "String"
+										},
+										"sink": {
+											"name": "NUMBER_OF_REVIEWS_L30D",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "availability_eoy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "AVAILABILITY_EOY",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "number_of_reviews_ly",
+											"type": "String"
+										},
+										"sink": {
+											"name": "NUMBER_OF_REVIEWS_LY",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "estimated_occupancy_l365d",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ESTIMATED_OCCUPANCY_L365D",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "estimated_revenue_l365d",
+											"type": "String"
+										},
+										"sink": {
+											"name": "ESTIMATED_REVENUE_L365D",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "first_review",
+											"type": "String"
+										},
+										"sink": {
+											"name": "FIRST_REVIEW",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "last_review",
+											"type": "String"
+										},
+										"sink": {
+											"name": "LAST_REVIEW",
+											"type": "DateTime"
+										}
+									},
+									{
+										"source": {
+											"name": "review_scores_rating",
+											"type": "String"
+										},
+										"sink": {
+											"name": "REVIEW_SCORES_RATING",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "review_scores_accuracy",
+											"type": "String"
+										},
+										"sink": {
+											"name": "REVIEW_SCORES_ACCURACY",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "review_scores_cleanliness",
+											"type": "String"
+										},
+										"sink": {
+											"name": "REVIEW_SCORES_CLEANLINESS",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "review_scores_checkin",
+											"type": "String"
+										},
+										"sink": {
+											"name": "REVIEW_SCORES_CHECKIN",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "review_scores_communication",
+											"type": "String"
+										},
+										"sink": {
+											"name": "REVIEW_SCORES_COMMUNICATION",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "review_scores_location",
+											"type": "String"
+										},
+										"sink": {
+											"name": "REVIEW_SCORES_LOCATION",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "review_scores_value",
+											"type": "String"
+										},
+										"sink": {
+											"name": "REVIEW_SCORES_VALUE",
+											"type": "Double"
+										}
+									},
+									{
+										"source": {
+											"name": "license",
+											"type": "String"
+										},
+										"sink": {
+											"name": "LICENSE",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "instant_bookable",
+											"type": "String"
+										},
+										"sink": {
+											"name": "INSTANT_BOOKABLE",
+											"type": "String"
+										}
+									},
+									{
+										"source": {
+											"name": "calculated_host_listings_count",
+											"type": "String"
+										},
+										"sink": {
+											"name": "CALCULATED_HOST_LISTINGS_COUNT",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "calculated_host_listings_count_entire_homes",
+											"type": "String"
+										},
+										"sink": {
+											"name": "CALCULATED_HOST_LISTINGS_COUNT_ENTIRE_HOMES",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "calculated_host_listings_count_private_rooms",
+											"type": "String"
+										},
+										"sink": {
+											"name": "CALCULATED_HOST_LISTINGS_COUNT_PRIVATE_ROOMS",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "calculated_host_listings_count_shared_rooms",
+											"type": "String"
+										},
+										"sink": {
+											"name": "CALCULATED_HOST_LISTINGS_COUNT_SHARED_ROOMS",
+											"type": "Int64"
+										}
+									},
+									{
+										"source": {
+											"name": "reviews_per_month",
+											"type": "String"
+										},
+										"sink": {
+											"name": "REVIEWS_PER_MONTH",
+											"type": "Double"
+										}
+									}
+								]
+							}
+						},
+						"inputs": [
+							{
+								"referenceName": "source",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						],
+						"outputs": [
+							{
+								"referenceName": "SnowflakeTable1",
+								"type": "DatasetReference",
+								"parameters": {}
+							}
+						]
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/source')]",
+				"[concat(variables('factoryId'), '/datasets/SnowflakeTable1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/SnowflakeTable1')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "Snowflake1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "SnowflakeV2Table",
+				"schema": [],
+				"typeProperties": {
+					"schema": "PUBLIC",
+					"table": "LISTINGS"
+				}
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/Snowflake1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/source')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "AzureBlobStorage1",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobStorageLocation",
+						"fileName": "lisbon listings.csv",
+						"folderPath": "listings",
+						"container": "city"
+					},
+					"columnDelimiter": ",",
+					"rowDelimiter": "\n",
+					"escapeChar": "\\",
+					"firstRowAsHeader": false,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/AzureBlobStorage1')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/AzureBlobStorage1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "AzureBlobStorage",
+				"typeProperties": {
+					"sasUri": "[parameters('AzureBlobStorage1_sasUri')]"
+				}
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/Snowflake1')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"annotations": [],
+				"type": "SnowflakeV2",
+				"typeProperties": {
+					"authenticationType": "Basic",
+					"accountIdentifier": "TSPTOEI-XP81843",
+					"user": "sai",
+					"database": "[parameters('Snowflake1_properties_typeProperties_database')]",
+					"warehouse": "COMPUTE_WH",
+					"role": "[parameters('Snowflake1_properties_typeProperties_role')]",
+					"password": {
+						"type": "SecureString",
+						"value": "[parameters('Snowflake1_password')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
