@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "lisbon listings.csv",
+				"fileName": "travel .csv",
 				"folderPath": "listings",
 				"container": "city"
 			},

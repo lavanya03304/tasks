@@ -10,7 +10,7 @@
 		"schema": [],
 		"typeProperties": {
 			"schema": "PUBLIC",
-			"table": "LISTINGS"
+			"table": "TRAVEL"
 		}
 	}
 }
