@@ -163,7 +163,7 @@
 										},
 										"sink": {
 											"name": "ID",
-											"type": "Int64"
+											"type": "String"
 										}
 									},
 									{
@@ -183,7 +183,7 @@
 										},
 										"sink": {
 											"name": "SCRAPE_ID",
-											"type": "Int64"
+											"type": "String"
 										}
 									},
 									{
@@ -193,7 +193,7 @@
 										},
 										"sink": {
 											"name": "LAST_SCRAPED",
-											"type": "DateTime"
+											"type": "String"
 										}
 									},
 									{
@@ -253,7 +253,7 @@
 										},
 										"sink": {
 											"name": "HOST_ID",
-											"type": "Int64"
+											"type": "String"
 										}
 									},
 									{
@@ -283,7 +283,7 @@
 										},
 										"sink": {
 											"name": "HOST_SINCE",
-											"type": "DateTime"
+											"type": "String"
 										}
 									},
 									{
@@ -383,7 +383,7 @@
 										},
 										"sink": {
 											"name": "HOST_LISTINGS_COUNT",
-											"type": "Int64"
+											"type": "String"
 										}
 									},
 									{
@@ -393,7 +393,7 @@
 										},
 										"sink": {
 											"name": "HOST_TOTAL_LISTINGS_COUNT",
-											"type": "Int64"
+											"type": "String"
 										}
 									},
 									{
@@ -463,7 +463,7 @@
 										},
 										"sink": {
 											"name": "LATITUDE",
-											"type": "Double"
+											"type": "String"
 										}
 									},
 									{
@@ -473,7 +473,7 @@
 										},
 										"sink": {
 											"name": "LONGITUDE",
-											"type": "Double"
+											"type": "String"
 										}
 									},
 									{
@@ -503,7 +503,7 @@
 										},
 										"sink": {
 											"name": "ACCOMMODATES",
-											"type": "Int64"
+											"type": "String"
 										}
 									},
 									{
@@ -513,7 +513,7 @@
 										},
 										"sink": {
 											"name": "BATHROOMS",
-											"type": "Double"
+											"type": "String"
 										}
 									},
 									{
@@ -533,7 +533,7 @@
 										},
 										"sink": {
 											"name": "BEDROOMS",
-											"type": "Double"
+											"type": "String"
 										}
 									},
 									{
@@ -543,7 +543,7 @@
 										},
 										"sink": {
 											"name": "BEDS",
-											"type": "Double"
+											"type": "String"
 										}
 									},
 									{
@@ -573,7 +573,7 @@
 										},
 										"sink": {
 											"name": "MINIMUM_NIGHTS",
-											"type": "Int64"
+											"type": "String"
 										}
 									},
 									{
@@ -583,7 +583,7 @@
 										},
 										"sink": {
 											"name": "MAXIMUM_NIGHTS",
-											"type": "Int64"
+											"type": "String"
 										}
 									},
 									{
@@ -593,7 +593,7 @@
 										},
 										"sink": {
 											"name": "MINIMUM_MINIMUM_NIGHTS",
-											"type": "Int64"
+											"type": "String"
 										}
 									},
 									{
@@ -603,7 +603,7 @@
 										},
 										"sink": {
 											"name": "MAXIMUM_MINIMUM_NIGHTS",
-											"type": "Int64"
+											"type": "String"
 										}
 									},
 									{
@@ -613,7 +613,7 @@
 										},
 										"sink": {
 											"name": "MINIMUM_MAXIMUM_NIGHTS",
-											"type": "Int64"
+											"type": "String"
 										}
 									},
 									{
@@ -623,7 +623,7 @@
 										},
 										"sink": {
 											"name": "MAXIMUM_MAXIMUM_NIGHTS",
-											"type": "Int64"
+											"type": "String"
 										}
 									},
 									{
@@ -633,7 +633,7 @@
 										},
 										"sink": {
 											"name": "MINIMUM_NIGHTS_AVG_NTM",
-											"type": "Double"
+											"type": "String"
 										}
 									},
 									{
@@ -643,7 +643,7 @@
 										},
 										"sink": {
 											"name": "MAXIMUM_NIGHTS_AVG_NTM",
-											"type": "Double"
+											"type": "String"
 										}
 									},
 									{
@@ -673,7 +673,7 @@
 										},
 										"sink": {
 											"name": "AVAILABILITY_30",
-											"type": "Int64"
+											"type": "String"
 										}
 									},
 									{
@@ -683,7 +683,7 @@
 										},
 										"sink": {
 											"name": "AVAILABILITY_60",
-											"type": "Int64"
+											"type": "String"
 										}
 									},
 									{
@@ -693,7 +693,7 @@
 										},
 										"sink": {
 											"name": "AVAILABILITY_90",
-											"type": "Int64"
+											"type": "String"
 										}
 									},
 									{
@@ -703,7 +703,7 @@
 										},
 										"sink": {
 											"name": "AVAILABILITY_365",
-											"type": "Int64"
+											"type": "String"
 										}
 									},
 									{
@@ -713,7 +713,7 @@
 										},
 										"sink": {
 											"name": "CALENDAR_LAST_SCRAPED",
-											"type": "DateTime"
+											"type": "String"
 										}
 									},
 									{
@@ -723,7 +723,7 @@
 										},
 										"sink": {
 											"name": "NUMBER_OF_REVIEWS",
-											"type": "Int64"
+											"type": "String"
 										}
 									},
 									{
@@ -733,7 +733,7 @@
 										},
 										"sink": {
 											"name": "NUMBER_OF_REVIEWS_LTM",
-											"type": "Int64"
+											"type": "String"
 										}
 									},
 									{
@@ -743,7 +743,7 @@
 										},
 										"sink": {
 											"name": "NUMBER_OF_REVIEWS_L30D",
-											"type": "Int64"
+											"type": "String"
 										}
 									},
 									{
@@ -763,7 +763,7 @@
 										},
 										"sink": {
 											"name": "NUMBER_OF_REVIEWS_LY",
-											"type": "Int64"
+											"type": "String"
 										}
 									},
 									{
@@ -773,7 +773,7 @@
 										},
 										"sink": {
 											"name": "ESTIMATED_OCCUPANCY_L365D",
-											"type": "Double"
+											"type": "String"
 										}
 									},
 									{
@@ -783,7 +783,7 @@
 										},
 										"sink": {
 											"name": "ESTIMATED_REVENUE_L365D",
-											"type": "Double"
+											"type": "String"
 										}
 									},
 									{
@@ -793,7 +793,7 @@
 										},
 										"sink": {
 											"name": "FIRST_REVIEW",
-											"type": "DateTime"
+											"type": "String"
 										}
 									},
 									{
@@ -803,7 +803,7 @@
 										},
 										"sink": {
 											"name": "LAST_REVIEW",
-											"type": "DateTime"
+											"type": "String"
 										}
 									},
 									{
@@ -813,7 +813,7 @@
 										},
 										"sink": {
 											"name": "REVIEW_SCORES_RATING",
-											"type": "Double"
+											"type": "String"
 										}
 									},
 									{
@@ -823,7 +823,7 @@
 										},
 										"sink": {
 											"name": "REVIEW_SCORES_ACCURACY",
-											"type": "Double"
+											"type": "String"
 										}
 									},
 									{
@@ -833,7 +833,7 @@
 										},
 										"sink": {
 											"name": "REVIEW_SCORES_CLEANLINESS",
-											"type": "Double"
+											"type": "String"
 										}
 									},
 									{
@@ -843,7 +843,7 @@
 										},
 										"sink": {
 											"name": "REVIEW_SCORES_CHECKIN",
-											"type": "Double"
+											"type": "String"
 										}
 									},
 									{
@@ -853,7 +853,7 @@
 										},
 										"sink": {
 											"name": "REVIEW_SCORES_COMMUNICATION",
-											"type": "Double"
+											"type": "String"
 										}
 									},
 									{
@@ -863,7 +863,7 @@
 										},
 										"sink": {
 											"name": "REVIEW_SCORES_LOCATION",
-											"type": "Double"
+											"type": "String"
 										}
 									},
 									{
@@ -873,7 +873,7 @@
 										},
 										"sink": {
 											"name": "REVIEW_SCORES_VALUE",
-											"type": "Double"
+											"type": "String"
 										}
 									},
 									{
@@ -903,7 +903,7 @@
 										},
 										"sink": {
 											"name": "CALCULATED_HOST_LISTINGS_COUNT",
-											"type": "Int64"
+											"type": "String"
 										}
 									},
 									{
@@ -913,7 +913,7 @@
 										},
 										"sink": {
 											"name": "CALCULATED_HOST_LISTINGS_COUNT_ENTIRE_HOMES",
-											"type": "Int64"
+											"type": "String"
 										}
 									},
 									{
@@ -923,7 +923,7 @@
 										},
 										"sink": {
 											"name": "CALCULATED_HOST_LISTINGS_COUNT_PRIVATE_ROOMS",
-											"type": "Int64"
+											"type": "String"
 										}
 									},
 									{
@@ -933,7 +933,7 @@
 										},
 										"sink": {
 											"name": "CALCULATED_HOST_LISTINGS_COUNT_SHARED_ROOMS",
-											"type": "Int64"
+											"type": "String"
 										}
 									},
 									{
@@ -943,7 +943,7 @@
 										},
 										"sink": {
 											"name": "REVIEWS_PER_MONTH",
-											"type": "Double"
+											"type": "String"
 										}
 									}
 								]
