@@ -53,7 +53,7 @@
 									"type": "AzureBlobStorageReadSettings",
 									"recursive": true,
 									"wildcardFolderPath": "listings",
-									"wildcardFileName": "lisbon listings.csv",
+									"wildcardFileName": "los angeles listings.csv",
 									"enablePartitionDiscovery": false
 								},
 								"formatSettings": {
