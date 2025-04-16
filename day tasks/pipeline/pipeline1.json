@@ -18,10 +18,11 @@
 					"source": {
 						"type": "DelimitedTextSource",
 						"storeSettings": {
-							"type": "AzureBlobStorageReadSettings",
+							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
-							"wildcardFolderPath": "listings",
-							"wildcardFileName": "travel .csv",
+							"modifiedDatetimeStart": null,
+							"modifiedDatetimeEnd": null,
+							"wildcardFileName": "travel.csv",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
@@ -34,58 +35,55 @@
 							"type": "SnowflakeImportCopyCommand"
 						}
 					},
-					"enableStaging": false,
+					"enableStaging": true,
+					"stagingSettings": {
+						"linkedServiceName": {
+							"referenceName": "AzureBlobStorage1",
+							"type": "LinkedServiceReference"
+						},
+						"path": ""
+					},
 					"translator": {
 						"type": "TabularTranslator",
 						"mappings": [
 							{
 								"source": {
-									"name": "Sale_ID",
-									"type": "Int64"
+									"name": "SALE_ID",
+									"type": "String"
 								},
 								"sink": {
 									"name": "SALE_ID",
-									"type": "Int64"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "Date_ID",
-									"type": "Date"
+									"name": "DATE_ID",
+									"type": "String"
 								},
 								"sink": {
 									"name": "DATE_ID",
-									"type": "DateTime"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "Product_ID",
-									"type": "Int64"
+									"name": "PRODUCT_ID",
+									"type": "String"
 								},
 								"sink": {
 									"name": "PRODUCT_ID",
-									"type": "Int64"
+									"type": "String"
 								}
 							},
 							{
 								"source": {
-									"name": "Customer_ID",
-									"type": "Int64"
+									"name": "CUSTOMER_ID",
+									"type": "String"
 								},
 								"sink": {
 									"name": "CUSTOMER_ID",
-									"type": "Int64"
-								}
-							},
-							{
-								"source": {
-									"name": "Store_ID",
-									"type": "Int64"
-								},
-								"sink": {
-									"name": "STORE_ID",
-									"type": "Int64"
+									"type": "String"
 								}
 							}
 						]
@@ -93,13 +91,13 @@
 				},
 				"inputs": [
 					{
-						"referenceName": "source",
+						"referenceName": "sourcedata",
 						"type": "DatasetReference"
 					}
 				],
 				"outputs": [
 					{
-						"referenceName": "SnowflakeTable1",
+						"referenceName": "SnowflakeTable2",
 						"type": "DatasetReference"
 					}
 				]
