@@ -1,0 +1,333 @@
+{
+	"name": "sink_snowflake",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_snowflake",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SnowflakeV2Table",
+		"schema": [
+			{
+				"name": "ID",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "LISTING_URL",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "SCRAPE_ID",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "LAST_SCRAPED",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "SOURCE",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "NAME",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "DESCRIPTION",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "NEIGHBORHOOD_OVERVIEW",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "PICTURE_URL",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "HOST_ID",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "HOST_URL",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "HOST_NAME",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "HOST_SINCE",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "HOST_LOCATION",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "HOST_ABOUT",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "HOST_RESPONSE_TIME",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "HOST_RESPONSE_RATE",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "HOST_ACCEPTANCE_RATE",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "HOST_IS_SUPERHOST",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "HOST_THUMBNAIL_URL",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "HOST_PICTURE_URL",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "HOST_NEIGHBOURHOOD",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "HOST_LISTINGS_COUNT",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "HOST_TOTAL_LISTINGS_COUNT",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "HOST_VERIFICATIONS",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "HOST_HAS_PROFILE_PIC",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "HOST_IDENTITY_VERIFIED",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "NEIGHBOURHOOD",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "NEIGHBOURHOOD_CLEANSED",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "NEIGHBOURHOOD_GROUP_CLEANSED",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "LATITUDE",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "LONGITUDE",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "PROPERTY_TYPE",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "ROOM_TYPE",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "ACCOMMODATES",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "BATHROOMS",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "BATHROOMS_TEXT",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "BEDROOMS",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "BEDS",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "AMENITIES",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "PRICE",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "MINIMUM_NIGHTS",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "MAXIMUM_NIGHTS",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "MINIMUM_MINIMUM_NIGHTS",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "MAXIMUM_MINIMUM_NIGHTS",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "MINIMUM_MAXIMUM_NIGHTS",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "MAXIMUM_MAXIMUM_NIGHTS",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "MINIMUM_NIGHTS_AVG_NTM",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "MAXIMUM_NIGHTS_AVG_NTM",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "CALENDAR_UPDATED",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "HAS_AVAILABILITY",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "AVAILABILITY_30",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "AVAILABILITY_60",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "AVAILABILITY_90",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "AVAILABILITY_365",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "CALENDAR_LAST_SCRAPED",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "NUMBER_OF_REVIEWS",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "NUMBER_OF_REVIEWS_LTM",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "NUMBER_OF_REVIEWS_L30D",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "AVAILABILITY_EOY",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "NUMBER_OF_REVIEWS_LY",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "ESTIMATED_OCCUPANCY_L365D",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "ESTIMATED_REVENUE_L365D",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "FIRST_REVIEW",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "LAST_REVIEW",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "REVIEW_SCORES_RATING",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "REVIEW_SCORES_ACCURACY",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "REVIEW_SCORES_CLEANLINESS",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "REVIEW_SCORES_CHECKIN",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "REVIEW_SCORES_COMMUNICATION",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "REVIEW_SCORES_LOCATION",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "REVIEW_SCORES_VALUE",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "LICENSE",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "INSTANT_BOOKABLE",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "CALCULATED_HOST_LISTINGS_COUNT",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "CALCULATED_HOST_LISTINGS_COUNT_ENTIRE_HOMES",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "CALCULATED_HOST_LISTINGS_COUNT_PRIVATE_ROOMS",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "CALCULATED_HOST_LISTINGS_COUNT_SHARED_ROOMS",
+				"type": "VARCHAR"
+			},
+			{
+				"name": "REVIEWS_PER_MONTH",
+				"type": "VARCHAR"
+			}
+		],
+		"typeProperties": {
+			"schema": "PUBLIC",
+			"table": "LISTINGS"
+		}
+	}
+}
