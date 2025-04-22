@@ -40,6 +40,13 @@
 						"type": "DatasetReference"
 					},
 					"name": "sink4"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_azuresql",
+						"type": "DatasetReference"
+					},
+					"name": "sink5"
 				}
 			],
 			"transformations": [
@@ -148,7 +155,17 @@
 				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     errorHandlingOption: 'stopOnFirstError') ~> sink4"
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink4",
+				"derivedColumn sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink5"
 			]
 		}
 	}

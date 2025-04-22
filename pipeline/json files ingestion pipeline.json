@@ -20,18 +20,28 @@
 						"storeSettings": {
 							"type": "AzureBlobFSReadSettings",
 							"recursive": true,
-							"wildcardFileName": "*.json",
 							"enablePartitionDiscovery": false
 						},
 						"formatSettings": {
 							"type": "JsonReadSettings"
 						}
 					},
-					"enableStaging": false
+					"sink": {
+						"type": "AzureSqlSink",
+						"writeBehavior": "insert",
+						"sqlWriterUseTableLock": false
+					},
+					"enableStaging": true
 				},
 				"inputs": [
 					{
 						"referenceName": "ds_json",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "ds_sink_CustomerMaster",
 						"type": "DatasetReference"
 					}
 				]

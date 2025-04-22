@@ -1,0 +1,79 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "ds_json",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_json",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
+				}
+			],
+			"sinks": [],
+			"transformations": [
+				{
+					"name": "derivedColumn1"
+				},
+				{
+					"name": "derivedColumn2"
+				},
+				{
+					"name": "union1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          CustomerID as integer,",
+				"          FirstName as string,",
+				"          LastName as string,",
+				"          Email as string,",
+				"          Phone as string,",
+				"          Region as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'documentPerLine') ~> source1",
+				"source(output(",
+				"          CustomerID as integer,",
+				"          FirstName as string,",
+				"          LastName as string,",
+				"          Email as string,",
+				"          Phone as string,",
+				"          Region as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false,",
+				"     documentForm: 'documentPerLine') ~> source2",
+				"source1 derive(DataSource = 'EU',",
+				"          IngestedDate = currentUTC(),",
+				"          RecordStatus = 'Active',",
+				"          FullName = concat(trim(FirstName), ' ', trim(LastName)),",
+				"          Email = lower(Email),",
+				"          Phone = replace(replace(trim(Phone), '-', ''), ' ', ''),",
+				"          FirstName = trim(FirstName),",
+				"          LastName = trim(LastName)) ~> derivedColumn1",
+				"source2 derive(DataSource = 'US',",
+				"          IngestedDate = currentUTC(),",
+				"          RecordStatus = 'Active',",
+				"          FullName = concat(trim(FirstName), ' ', trim(LastName)),",
+				"          Email = lower(Email),",
+				"          Phone = replace(replace(trim(Phone), '-', ''), ' ', ''),",
+				"          FirstName = trim(FirstName),",
+				"          LastName = trim(LastName)) ~> derivedColumn2",
+				"derivedColumn1, derivedColumn2 union(byName: false)~> union1"
+			]
+		}
+	}
+}

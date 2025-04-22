@@ -1,0 +1,42 @@
+{
+	"name": "ds_sink_CustomerDuplicates",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDatabase1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "CustomerID",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "FirstName",
+				"type": "varchar"
+			},
+			{
+				"name": "LastName",
+				"type": "varchar"
+			},
+			{
+				"name": "Email",
+				"type": "varchar"
+			},
+			{
+				"name": "Phone",
+				"type": "varchar"
+			},
+			{
+				"name": "Region",
+				"type": "varchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "CustomerDuplicates"
+		}
+	}
+}
