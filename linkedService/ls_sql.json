@@ -5,13 +5,13 @@
 		"annotations": [],
 		"type": "AzureSqlDatabase",
 		"typeProperties": {
-			"server": "dblavanya.database.windows.net",
-			"database": "dblavanya",
+			"server": "server-sales.database.windows.net",
+			"database": "sales_data",
 			"encrypt": "mandatory",
 			"trustServerCertificate": false,
 			"authenticationType": "SQL",
-			"userName": "lalu",
-			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDBGNkMxNTkwLTRDN0UtNEMxRC1CODcwLTgwN0FEQkY5NEM4MF9mNzZiNGY3OS1kNzRjLTRjMDEtOTcwNC0zYTAwN2MxNzNiOTEiDQp9"
+			"userName": "salesadmin",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkRBVEFGQUNUT1JZQDBGNkMxNTkwLTRDN0UtNEMxRC1CODcwLTgwN0FEQkY5NEM4MF85N2YwODZlZC05YTk5LTQ1ZWEtOTRhMS05NGUwZDY4MjczNjAiDQp9"
 		}
 	}
 }
