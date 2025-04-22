@@ -19,7 +19,15 @@
 					"name": "source2"
 				}
 			],
-			"sinks": [],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
 			"transformations": [
 				{
 					"name": "derivedColumn1"
@@ -72,7 +80,27 @@
 				"          Phone = replace(replace(trim(Phone), '-', ''), ' ', ''),",
 				"          FirstName = trim(FirstName),",
 				"          LastName = trim(LastName)) ~> derivedColumn2",
-				"derivedColumn1, derivedColumn2 union(byName: false)~> union1"
+				"derivedColumn1, derivedColumn2 union(byName: false)~> union1",
+				"union1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          OrderID as integer,",
+				"          OrderDate as date,",
+				"          CustomerID as integer,",
+				"          Region as string,",
+				"          ProductID as integer,",
+				"          Quantity as integer,",
+				"          UnitPrice as decimal(10,2),",
+				"          TotalSales as decimal(12,2)",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1"
 			]
 		}
 	}
