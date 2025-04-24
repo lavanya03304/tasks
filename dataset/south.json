@@ -1,0 +1,16 @@
+{
+	"name": "south",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_azuretask1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "Sales_South"
+		}
+	}
+}
