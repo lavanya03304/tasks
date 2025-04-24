@@ -1,5 +1,5 @@
 {
-	"name": "dataflow1",
+	"name": "task2df",
 	"properties": {
 		"type": "MappingDataFlow",
 		"typeProperties": {
@@ -10,18 +10,22 @@
 						"type": "DatasetReference"
 					},
 					"name": "source1"
-				},
-				{
-					"dataset": {
-						"referenceName": "ds_json",
-						"type": "DatasetReference"
-					},
-					"name": "source2"
 				}
 			],
 			"sinks": [
 				{
+					"dataset": {
+						"referenceName": "ds_sink_CustomerMaster",
+						"type": "DatasetReference"
+					},
 					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "ds_sink_CustomerDuplicates",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
 				}
 			],
 			"transformations": [
@@ -29,10 +33,16 @@
 					"name": "derivedColumn1"
 				},
 				{
-					"name": "derivedColumn2"
+					"name": "union1"
 				},
 				{
-					"name": "union1"
+					"name": "derivedColumn3"
+				},
+				{
+					"name": "split1"
+				},
+				{
+					"name": "window1"
 				}
 			],
 			"scriptLines": [
@@ -48,7 +58,44 @@
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false,",
 				"     documentForm: 'documentPerLine') ~> source1",
-				"source(output(",
+				"source1 derive(DataSource = 'EU',",
+				"          IngestedDate = currentUTC(),",
+				"          RecordStatus = 'Active',",
+				"          FullName = concat(trim(FirstName), ' ', trim(LastName)),",
+				"          Email = lower(Email),",
+				"          Phone = replace(replace(trim(Phone), '-', ''), ' ', '')) ~> derivedColumn1",
+				"derivedColumn1 union(byName: true)~> union1",
+				"union1 derive(FullName = FirstName+LastName) ~> derivedColumn3",
+				"window1 split(equals(rownumber, 1),",
+				"     disjoint: false) ~> split1@(unique, dub)",
+				"derivedColumn3 window(over(Email,",
+				"          FullName),",
+				"     asc(CustomerID, true),",
+				"     rownumber = rowNumber()) ~> window1",
+				"split1@unique sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
+				"          CustomerID as integer,",
+				"          FirstName as string,",
+				"          LastName as string,",
+				"          Email as string,",
+				"          Phone as string,",
+				"          Region as string,",
+				"          DataSource as string,",
+				"          IngestedDate as timestamp,",
+				"          RecordStatus as string",
+				"     ),",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink1",
+				"split1@dub sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     input(",
 				"          CustomerID as integer,",
 				"          FirstName as string,",
 				"          LastName as string,",
@@ -56,32 +103,14 @@
 				"          Phone as string,",
 				"          Region as string",
 				"     ),",
-				"     allowSchemaDrift: true,",
-				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false,",
-				"     documentForm: 'documentPerLine') ~> source2",
-				"source1 derive(DataSource = 'EU',",
-				"          IngestedDate = currentUTC(),",
-				"          RecordStatus = 'Active',",
-				"          FullName = concat(trim(FirstName), ' ', trim(LastName)),",
-				"          Email = lower(Email),",
-				"          Phone = replace(replace(trim(Phone), '-', ''), ' ', ''),",
-				"          FirstName = trim(FirstName),",
-				"          LastName = trim(LastName)) ~> derivedColumn1",
-				"source2 derive(DataSource = 'US',",
-				"          IngestedDate = currentUTC(),",
-				"          RecordStatus = 'Active',",
-				"          FullName = concat(trim(FirstName), ' ', trim(LastName)),",
-				"          Email = lower(Email),",
-				"          Phone = replace(replace(trim(Phone), '-', ''), ' ', ''),",
-				"          FirstName = trim(FirstName),",
-				"          LastName = trim(LastName)) ~> derivedColumn2",
-				"derivedColumn1, derivedColumn2 union(byName: false)~> union1",
-				"union1 sink(allowSchemaDrift: true,",
-				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
 				"     skipDuplicateMapInputs: true,",
 				"     skipDuplicateMapOutputs: true,",
-				"     format: 'table') ~> sink1"
+				"     errorHandlingOption: 'stopOnFirstError') ~> sink2"
 			]
 		}
 	}

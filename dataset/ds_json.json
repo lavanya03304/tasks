@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobFSLocation",
-				"fileName": "customers_us.json",
+				"fileName": "*.json",
 				"fileSystem": "json"
 			}
 		},
