@@ -1,0 +1,39 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "airbnb-adf-cities"
+		},
+		"ls_adls_cities_accountKey": {
+			"value": ""
+		},
+		"ls_databricks_accessToken": {
+			"value": ""
+		},
+		"ls_snowflake_password": {
+			"value": ""
+		},
+		"ls_adls_cities_properties_typeProperties_url": {
+			"value": "https://airbnbcities.dfs.core.windows.net/"
+		},
+		"ls_databricks_properties_typeProperties_existingClusterId": {
+			"value": "0613-162003-lvmxl9bb"
+		},
+		"ls_snowflake_properties_typeProperties_database": {
+			"value": "AIRBNB"
+		},
+		"ls_snowflake_properties_typeProperties_role": {
+			"value": "ACCOUNTADMIN"
+		},
+		"ls_snowflake_properties_typeProperties_host": {
+			"value": "GDGUSMG-TB73063.snowflakecomputing.com"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

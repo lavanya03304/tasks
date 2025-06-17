@@ -1,0 +1,98 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "airbnb-adf-cities"
+		},
+		"ls_adls_cities_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'ls_adls_cities'"
+		},
+		"ls_databricks_accessToken": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accessToken' of 'ls_databricks'"
+		},
+		"ls_snowflake_password": {
+			"type": "secureString",
+			"metadata": "Secure string for 'password' of 'ls_snowflake'"
+		},
+		"ls_adls_cities_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://airbnbcities.dfs.core.windows.net/"
+		},
+		"ls_databricks_properties_typeProperties_existingClusterId": {
+			"type": "string",
+			"defaultValue": "0613-162003-lvmxl9bb"
+		},
+		"ls_snowflake_properties_typeProperties_database": {
+			"type": "string",
+			"defaultValue": "AIRBNB"
+		},
+		"ls_snowflake_properties_typeProperties_role": {
+			"type": "string",
+			"defaultValue": "ACCOUNTADMIN"
+		},
+		"ls_snowflake_properties_typeProperties_host": {
+			"type": "string",
+			"defaultValue": "GDGUSMG-TB73063.snowflakecomputing.com"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "airbnb-adf-cities_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"ls_adls_cities_accountKey": {
+						"value": "[parameters('ls_adls_cities_accountKey')]"
+					},
+					"ls_databricks_accessToken": {
+						"value": "[parameters('ls_databricks_accessToken')]"
+					},
+					"ls_snowflake_password": {
+						"value": "[parameters('ls_snowflake_password')]"
+					},
+					"ls_adls_cities_properties_typeProperties_url": {
+						"value": "[parameters('ls_adls_cities_properties_typeProperties_url')]"
+					},
+					"ls_databricks_properties_typeProperties_existingClusterId": {
+						"value": "[parameters('ls_databricks_properties_typeProperties_existingClusterId')]"
+					},
+					"ls_snowflake_properties_typeProperties_database": {
+						"value": "[parameters('ls_snowflake_properties_typeProperties_database')]"
+					},
+					"ls_snowflake_properties_typeProperties_role": {
+						"value": "[parameters('ls_snowflake_properties_typeProperties_role')]"
+					},
+					"ls_snowflake_properties_typeProperties_host": {
+						"value": "[parameters('ls_snowflake_properties_typeProperties_host')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
